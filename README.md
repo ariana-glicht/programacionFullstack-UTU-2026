@@ -1,0 +1,1 @@
+Lo organize asi ya que me resulto practico porque me ayuda a reconocer las actividades por mes, y la carpeta importante es para la informacion q no importa de q mes sea.
