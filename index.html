@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UTU 2026 — Ariana Glicht</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --surface: #161616;
+      --surface2: #1f1f1f;
+      --border: rgba(255,255,255,0.07);
+      --border-hover: rgba(255,255,255,0.15);
+      --accent: #c8f135;
+      --accent-dim: rgba(200,241,53,0.12);
+      --text: #f0ede6;
+      --muted: #666;
+      --muted2: #444;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    header { margin-bottom: 4rem; }
+
+    .eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      line-height: 1.05;
+      color: var(--text);
+      font-weight: 400;
+    }
+    h1 em { font-style: italic; color: var(--accent); }
+
+    .header-meta {
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 13px;
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+    }
+
+    .status-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
+    }
+    .status-dot::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 0 2.5rem;
+    }
+
+    .stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    .stat { display: flex; flex-direction: column; gap: 4px; }
+    .stat-value {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      color: var(--text);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .count-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      background: var(--accent-dim);
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+
+    .ex-list { display: flex; flex-direction: column; gap: 2px; }
+
+    .ex-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 1.1rem 1.25rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.15s, border-color 0.15s, transform 0.15s;
+      animation: fadeUp 0.4s ease both;
+    }
+    .ex-card:hover {
+      background: var(--surface2);
+      border-color: var(--border-hover);
+      transform: translateX(4px);
+    }
+    .ex-card:hover .ex-arrow { transform: translateX(4px); color: var(--accent); }
+    .ex-card:hover .ex-num { background: var(--accent-dim); color: var(--accent); border-color: transparent; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .ex-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--muted);
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.15s;
+    }
+
+    .ex-info { flex: 1; min-width: 0; }
+    .ex-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ex-path {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ex-arrow {
+      color: var(--muted2);
+      font-size: 18px;
+      transition: transform 0.15s, color 0.15s;
+      flex-shrink: 0;
+    }
+
+    .state-box {
+      padding: 2.5rem;
+      text-align: center;
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+    }
+    .state-box p { font-size: 13px; color: var(--muted); font-family: 'DM Mono', monospace; line-height: 1.8; }
+
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin: 0 auto 1rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    footer {
+      margin-top: 5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .footer-link { color: var(--muted); text-decoration: none; transition: color 0.15s; }
+    .footer-link:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="eyebrow">Programación Fullstack · UTU 2026</div>
+    <h1>Trabajos de<br><em>Ariana Glicht</em></h1>
+    <div class="header-meta">
+      <span class="status-dot">GitHub Pages activo</span>
+      <span id="last-updated">—</span>
+    </div>
+  </header>
+
+  <hr class="divider">
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-value" id="stat-count">—</div>
+      <div class="stat-label">ejercicios</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" id="stat-folders">—</div>
+      <div class="stat-label">carpetas</div>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <span class="section-title">Archivos detectados</span>
+    <span class="count-badge" id="badge">cargando…</span>
+  </div>
+
+  <div class="ex-list" id="ex-list">
+    <div class="state-box">
+      <div class="spinner"></div>
+      <p>Escaneando repositorio…</p>
+    </div>
+  </div>
+
+  <footer>
+    <span>ariana-glicht · UTU 2026</span>
+    <a class="footer-link" href="https://github.com/ariana-glicht/programacionFullstack-UTU-2026" target="_blank">ver en github ↗</a>
+  </footer>
+
+</div>
+
+<script>
+  const OWNER = 'ariana-glicht';
+  const REPO  = 'programacionFullstack-UTU-2026';
+
+  function formatName(path) {
+    const file = path.split('/').pop().replace(/\.html?$/i, '');
+    return file.charAt(0).toUpperCase() + file.slice(1).replace(/[-_]/g, ' ');
+  }
+
+  function formatPath(path) {
+    const parts = path.split('/');
+    parts.pop();
+    return parts.length ? parts.join(' / ') : '/';
+  }
+
+  async function loadFiles() {
+    const list   = document.getElementById('ex-list');
+    const badge  = document.getElementById('badge');
+
+    try {
+      const res  = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/git/trees/HEAD?recursive=1`);
+      if (!res.ok) throw new Error('API ' + res.status);
+      const data = await res.json();
+
+      const files = (data.tree || []).filter(item =>
+        item.type === 'blob' &&
+        /\.html?$/i.test(item.path) &&
+        item.path.toLowerCase() !== 'index.html'
+      );
+
+      const folders = new Set(files.map(f => {
+        const p = f.path.split('/');
+        p.pop();
+        return p.join('/');
+      }));
+
+      document.getElementById('stat-count').textContent   = files.length;
+      document.getElementById('stat-folders').textContent = folders.size;
+      badge.textContent = files.length + ' archivo' + (files.length !== 1 ? 's' : '');
+
+      try {
+        const cr = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/commits?per_page=1`);
+        if (cr.ok) {
+          const commits = await cr.json();
+          if (commits[0]) {
+            const d = new Date(commits[0].commit.author.date);
+            document.getElementById('last-updated').textContent =
+              'actualizado ' + d.toLocaleDateString('es-UY', { day:'numeric', month:'short', year:'numeric' });
+          }
+        }
+      } catch(e) {}
+
+      if (files.length === 0) {
+        list.innerHTML = `<div class="state-box"><p>No se encontraron archivos .html<br>(excepto este índice).</p></div>`;
+        return;
+      }
+
+      list.innerHTML = files.map((f, i) => `
+        <a class="ex-card" href="${f.path}" style="animation-delay:${i * 0.06}s">
+          <div class="ex-num">${String(i+1).padStart(2,'0')}</div>
+          <div class="ex-info">
+            <div class="ex-name">${formatName(f.path)}</div>
+            <div class="ex-path">${formatPath(f.path)}</div>
+          </div>
+          <span class="ex-arrow">›</span>
+        </a>
+      `).join('');
+
+    } catch(err) {
+      list.innerHTML = `<div class="state-box"><p>No se pudo conectar con la API de GitHub.<br>Verificá que el repositorio es público.</p></div>`;
+      badge.textContent = 'error';
+    }
+  }
+
+  loadFiles();
+</script>
+</body>
+</html>
