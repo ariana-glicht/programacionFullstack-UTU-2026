@@ -1,0 +1,84 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background-color: #fdcaca;
+}
+header {
+  background-color: #D7897F;
+  color: #A55E57;
+  text-align: center;
+  padding: 20px;
+}
+.titulo {
+  font-family: Impact;
+  font-size: 30px;
+}
+.Festival {
+  background-color: #F9B95C;
+  padding: 20px;
+  margin: 15px;
+  border-radius: 10px;
+  color: #C98B34;
+}
+.festival {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  color: #A55E57;
+}
+a {
+  display: block;
+  text-align: left;
+  color: #cc6900;
+  font-weight: bold;
+  margin: 10px 0;
+}
+a:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+.Artistas {
+  background-color: #96C7B3;
+  padding: 20px;
+  margin: 15px;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: double;
+  color: #6FA08D;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.Artistas h3 {
+  width: 100%;
+}
+.Artistas div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Artistas img {
+  width: 150px;
+  height: 120px;
+  object-fit: cover;
+  margin: 10px;
+  border-radius: 10px;
+}
+.Actividades {
+  background-color: #6398A9;
+  padding: 20px;
+  margin: 15px;
+  border-radius: 10px;
+  color: #3F6F80;
+}
+.Actividades img {
+  width: 100%;
+}
+footer {
+  background-color: #D7897F;
+  color: #A55E57;
+  text-align: center;
+  padding: 15px;
+}
