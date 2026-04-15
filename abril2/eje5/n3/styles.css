@@ -1,0 +1,31 @@
+body {
+ background-color: black;
+ font-family: Arial, Helvetica, sans-serif;
+
+}
+.con{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px;
+    align-items: center;
+}
+.cont{
+ background-color: #13294b;
+    color: white;
+    padding: 25px 50px;
+    text-align: center;
+    min-width: 150px;
+    border-top: 3px solid hsl(0, 0%, 24%);
+}
+
+.cont h3{
+     margin: 0;
+    font-size: 28px;
+}
+p{
+   margin: 5px 0 0;
+    font-size: 12px;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
