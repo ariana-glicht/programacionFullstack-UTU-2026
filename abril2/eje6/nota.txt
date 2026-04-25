@@ -1,0 +1,4 @@
+8
+
+Falto hoover en botones
+El div Categorias no se frena en la linea :c
