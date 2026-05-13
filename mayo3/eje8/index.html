@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fashion Mystery Mansion</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="loader" id="loader">
+    <div class="seal">FMM</div>
+    <h1>Fashion Mystery Mansion</h1>
+    <p>Abriendo las puertas de la mansión...</p>
+  </div>
+
+  <div class="rain"></div>
+  <div class="fog"></div>
+  <div class="particles" id="particles"></div>
+
+  <main>
+    <section class="intro" id="intro">
+      <div class="intro-card">
+        <p class="kicker">Luxury mystery escape room</p>
+        <h1>Fashion Mystery Mansion</h1>
+        <p>
+          Explora una mansión nocturna de alta moda, encuentra prendas ocultas,
+          resuelve minijuegos y desbloquea el final secreto.
+        </p>
+        <div class="actions">
+          <button class="primary" id="startGame">Entrar a la mansión</button>
+          <button class="icon" id="soundBtn">♪</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="game" id="game">
+      <header class="topbar">
+        <button class="ghost" id="goHall">Vestíbulo</button>
+        <div>
+          <p id="roomKicker">Mapa de exploración</p>
+          <h2 id="roomTitle">Grand Foyer</h2>
+        </div>
+        <div class="actions">
+          <button class="icon" id="mapBtn">⌖</button>
+          <button class="icon" id="wardrobeBtn">◈</button>
+          <button class="icon" id="mirrorBtn">◐</button>
+        </div>
+      </header>
+
+      <aside class="hud">
+        <div class="panel">
+          <span>Progreso</span>
+          <strong id="progressText">0%</strong>
+          <div class="bar"><span id="progressFill"></span></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <span>Inventario</span>
+            <small id="inventoryCount">0</small>
+          </div>
+          <div class="inventory" id="inventory"></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <span>Logros</span>
+            <small id="achievementCount">0/6</small>
+          </div>
+          <div id="achievements"></div>
+        </div>
+      </aside>
+
+      <section class="stage foyer" id="stage">
+        <div class="room-bg">
+          <div class="window"></div>
+          <div class="light"></div>
+          <div class="candle c1"><span></span></div>
+          <div class="candle c2"><span></span></div>
+        </div>
+
+        <div class="stage-content">
+          <div>
+            <p class="kicker" id="stageKicker">Mansion entrance</p>
+            <h3 id="stageTitle">Grand Foyer</h3>
+            <p id="stageText">
+              El vestíbulo conecta las habitaciones secretas de la mansión.
+            </p>
+          </div>
+          <div class="hotspots" id="hotspots"></div>
+        </div>
+      </section>
+
+      <nav class="dock" id="dock"></nav>
+    </section>
+  </main>
+
+  <dialog class="modal" id="mapModal">
+    <div class="modal-inner">
+      <button class="close" data-close="mapModal">×</button>
+      <p class="kicker">Mapa interactivo</p>
+      <h2>Alas de la mansión</h2>
+      <div class="map-grid" id="mapGrid"></div>
+    </div>
+  </dialog>
+
+  <dialog class="modal" id="wardrobeModal">
+    <div class="modal-inner">
+      <button class="close" data-close="wardrobeModal">×</button>
+      <p class="kicker">Armario inteligente</p>
+      <h2>Crea un look de gala</h2>
+      <div class="wardrobe">
+        <div id="savedPieces"></div>
+        <div class="look">
+          <div class="mannequin">
+            <span class="head"></span>
+            <span class="body"></span>
+            <span class="base"></span>
+          </div>
+          <p id="lookAdvice">Encuentra prendas para recibir una recomendación.</p>
+          <button class="primary" id="styleBtn">Recomendar look</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="modal" id="mirrorModal">
+    <div class="modal-inner center">
+      <button class="close" data-close="mirrorModal">×</button>
+      <p class="kicker">Fashion AI Mirror</p>
+      <h2>Espejo de estilo</h2>
+      <div class="mirror">
+        <div class="scan"></div>
+        <div class="avatar" id="avatar"></div>
+      </div>
+      <div class="mirror-options">
+        <button data-style="Noir Couture">Noir Couture</button>
+        <button data-style="Golden Drama">Golden Drama</button>
+        <button data-style="Cyber Gala">Cyber Gala</button>
+        <button data-style="Rose Night">Rose Night</button>
+      </div>
+      <p id="mirrorText">Toca un estilo para recibir una recomendación.</p>
+    </div>
+  </dialog>
+
+  <dialog class="modal" id="gameModal">
+    <div class="modal-inner">
+      <button class="close" data-close="gameModal">×</button>
+      <p class="kicker" id="miniKicker">Minijuego</p>
+      <h2 id="miniTitle">Puzzle de moda</h2>
+      <div id="miniArea"></div>
+    </div>
+  </dialog>
+
+  <dialog class="modal finale" id="finaleModal">
+    <div class="modal-inner center">
+      <p class="kicker">Mansión completada</p>
+      <h2>La colección secreta fue revelada</h2>
+      <div class="final-seal">FMM</div>
+      <p>
+        Encontraste todos los objetos, resolviste todos los minijuegos y abriste
+        cada ala de la Fashion Mystery Mansion.
+      </p>
+      <div class="actions">
+        <button class="primary" id="restartBtn">Jugar de nuevo</button>
+        <button class="ghost" data-close="finaleModal">Quedarme en la mansión</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toasts" id="toasts"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
