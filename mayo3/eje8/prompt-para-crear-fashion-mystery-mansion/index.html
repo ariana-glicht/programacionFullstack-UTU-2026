@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fashion Mystery Mansion</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loading-emblem">FMM</div>
+    <div class="loading-copy">
+      <span>Abriendo las puertas de la mansión</span>
+      <strong>Fashion Mystery Mansion</strong>
+    </div>
+    <div class="loading-bar"><span></span></div>
+  </div>
+
+  <div class="rain-layer" aria-hidden="true"></div>
+  <div class="particle-layer" id="particleLayer" aria-hidden="true"></div>
+  <div class="fog-layer" aria-hidden="true"></div>
+
+  <main class="app-shell">
+    <section class="intro" id="intro">
+      <div class="intro-media">
+        <div class="mansion-silhouette">
+          <div class="moon"></div>
+          <div class="roof roof-left"></div>
+          <div class="roof roof-right"></div>
+          <div class="tower tower-left"><span></span></div>
+          <div class="tower tower-right"><span></span></div>
+          <div class="mansion-body">
+            <span></span><span></span><span></span><span></span>
+            <i></i>
+          </div>
+          <div class="stairs"></div>
+        </div>
+      </div>
+      <div class="intro-panel">
+        <p class="kicker">Luxury mystery escape room</p>
+        <h1>Fashion Mystery Mansion</h1>
+        <p>Explora una mansión nocturna donde cada habitación oculta prendas raras, códigos, vitrinas secretas y minijuegos inspirados en casas de alta moda.</p>
+        <div class="intro-actions">
+          <button class="primary-action" id="enterMansion">Entrar a la mansión</button>
+          <button class="icon-action" id="toggleAudio" aria-label="Activar sonido" title="Sonido">♪</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="mansion" id="mansion" aria-live="polite">
+      <header class="topbar">
+        <button class="ghost-button" id="backToHall">Vestíbulo</button>
+        <div>
+          <p id="roomSubtitle">Mapa de exploración</p>
+          <h2 id="roomTitle">Grand Foyer</h2>
+        </div>
+        <div class="topbar-actions">
+          <button class="icon-action" id="openMap" aria-label="Abrir mapa" title="Mapa">⌖</button>
+          <button class="icon-action" id="openWardrobe" aria-label="Abrir armario" title="Armario">◈</button>
+          <button class="icon-action" id="openMirror" aria-label="Abrir espejo AI" title="Fashion AI Mirror">◐</button>
+          <button class="icon-action" id="resetGameNow" aria-label="Reiniciar juego" title="Reiniciar">↻</button>
+        </div>
+      </header>
+
+      <aside class="hud">
+        <div class="progress-card">
+          <span>Progreso</span>
+          <strong id="progressText">0%</strong>
+          <div class="progress-track"><span id="progressFill"></span></div>
+        </div>
+        <div class="mystery-status">
+          <div>
+            <span>Medianoche</span>
+            <strong id="midnightClock">11:00</strong>
+          </div>
+          <div>
+            <span>Drama</span>
+            <strong id="dramaLevel">0</strong>
+          </div>
+        </div>
+        <div class="inventory">
+          <div class="panel-heading">
+            <span>Inventario</span>
+            <small id="inventoryCount">0 piezas</small>
+          </div>
+          <div class="inventory-grid" id="inventoryGrid"></div>
+        </div>
+        <div class="achievements">
+          <div class="panel-heading">
+            <span>Logros</span>
+            <small id="achievementCount">0/6</small>
+          </div>
+          <div id="achievementList"></div>
+        </div>
+      </aside>
+
+      <section class="room-stage foyer-theme" id="roomStage">
+        <div class="room-backdrop">
+          <div class="window-rain"></div>
+          <div class="candle candle-a"><span></span></div>
+          <div class="candle candle-b"><span></span></div>
+          <div class="moving-light"></div>
+        </div>
+        <div class="room-content">
+          <div class="room-copy">
+            <p class="kicker" id="brandKicker">Mansion entrance</p>
+            <h3 id="stageHeading">Grand Foyer</h3>
+            <p id="stageDescription">Un vestíbulo de mármol oscuro conecta ocho alas secretas. Las puertas responden a tu progreso, a códigos ocultos y a las prendas que encuentres.</p>
+          </div>
+          <div class="interactive-zone" id="interactiveZone"></div>
+        </div>
+      </section>
+
+      <nav class="room-dock" id="roomDock" aria-label="Habitaciones de la mansión"></nav>
+    </section>
+  </main>
+
+  <dialog class="modal" id="mapModal">
+    <div class="modal-inner">
+      <button class="close-modal" data-close="mapModal" aria-label="Cerrar">×</button>
+      <p class="kicker">Mapa interactivo</p>
+      <h2>Alas de la mansión</h2>
+      <div class="map-grid" id="mapGrid"></div>
+    </div>
+  </dialog>
+
+  <dialog class="modal" id="wardrobeModal">
+    <div class="modal-inner wardrobe-modal">
+      <button class="close-modal" data-close="wardrobeModal" aria-label="Cerrar">×</button>
+      <p class="kicker">Armario inteligente</p>
+      <h2>Crea un look de gala</h2>
+      <div class="wardrobe-layout">
+        <div class="saved-pieces" id="savedPieces"></div>
+        <div class="look-preview">
+          <div class="mannequin">
+            <span id="lookHead"></span>
+            <span id="lookBody"></span>
+            <span id="lookBase"></span>
+          </div>
+          <p id="lookAdvice">Encuentra prendas en la mansión para recibir una recomendación.</p>
+          <button class="primary-action" id="autoStyle">Recomendar look</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="modal" id="mirrorModal">
+    <div class="modal-inner mirror-modal">
+      <button class="close-modal" data-close="mirrorModal" aria-label="Cerrar">×</button>
+      <p class="kicker">Fashion AI Mirror</p>
+      <h2>Espejo de estilo</h2>
+      <div class="mirror-glass">
+        <div class="scan-line"></div>
+        <div class="mirror-avatar" id="mirrorAvatar"></div>
+      </div>
+      <div class="mirror-controls">
+        <button data-style="Noir Couture">Noir Couture</button>
+        <button data-style="Golden Drama">Golden Drama</button>
+        <button data-style="Cyber Gala">Cyber Gala</button>
+        <button data-style="Rose Night">Rose Night</button>
+      </div>
+      <button class="primary-action mystery-style-button" id="randomRealLook" title="Armar outfit oficial">?</button>
+      <button class="ghost-button" id="mirrorRealm">Entrar al reflejo</button>
+      <div class="real-product-card" id="realProductCard">
+        <div class="real-product-image" id="realProductImage"><span>FMM</span></div>
+        <div class="real-product-copy">
+          <small>Armario virtual couture</small>
+          <strong id="realProductName">Presiona ? para armar un outfit real.</strong>
+          <p id="realProductCollection">El espejo combinará prendas originales, precios, total y links oficiales.</p>
+          <div class="outfit-list" id="outfitList"></div>
+          <a id="realProductLink" href="#" target="_blank" rel="noopener">Ver primera prenda</a>
+        </div>
+      </div>
+      <p id="mirrorText">Toca un estilo para que el espejo proyecte una recomendación animada.</p>
+    </div>
+  </dialog>
+
+  <dialog class="modal" id="cinemaModal">
+    <div class="modal-inner">
+      <button class="close-modal" data-close="cinemaModal" aria-label="Cerrar">×</button>
+      <p class="kicker">Cinematic fashion clips</p>
+      <h2>Archivo visual nocturno</h2>
+      <div class="video-wall">
+        <div class="video-card runway-clip"><span></span><strong>Pasarela</strong></div>
+        <div class="video-card city-clip"><span></span><strong>Ciudad nocturna</strong></div>
+        <div class="video-card mansion-clip"><span></span><strong>Mansión</strong></div>
+        <div class="video-card fabric-clip"><span></span><strong>Detalle couture</strong></div>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="modal" id="archiveModal">
+    <div class="modal-inner">
+      <button class="close-modal" data-close="archiveModal" aria-label="Cerrar">×</button>
+      <p class="kicker">The Archive</p>
+      <h2>Archivo secreto de medianoche</h2>
+      <p>La mansión abrió su sala prohibida. Aquí se guardan poderes, pistas y finales raros.</p>
+      <div class="archive-grid" id="archiveGrid"></div>
+    </div>
+  </dialog>
+
+  <dialog class="modal" id="gameModal">
+    <div class="modal-inner">
+      <button class="close-modal" data-close="gameModal" aria-label="Cerrar">×</button>
+      <p class="kicker" id="gameKicker">Minijuego</p>
+      <h2 id="gameTitle">Puzzle de moda</h2>
+      <div id="gameArea"></div>
+    </div>
+  </dialog>
+
+  <dialog class="modal finale-modal" id="finaleModal">
+    <div class="modal-inner finale-inner escape-finale">
+      <p class="kicker">Mansión completada</p>
+      <h2>Escapaste de la Fashion Mystery Mansion</h2>
+      <div class="escape-scene" aria-hidden="true">
+        <div class="escape-moon"></div>
+        <div class="escape-mansion">
+          <span></span><span></span><span></span>
+          <i></i>
+        </div>
+        <div class="escape-gates"></div>
+        <div class="escape-car"></div>
+        <div class="escape-road"></div>
+      </div>
+      <p>Las puertas doradas se abren, la lluvia cae sobre el camino y tu colección secreta escapa contigo hacia la noche.</p>
+      <div class="finale-actions">
+        <button class="primary-action" id="restartGame">Jugar de nuevo</button>
+        <button class="ghost-button" data-close="finaleModal">Quedarme en la mansión</button>
+      </div>
+      <div class="cover-editor">
+        <div class="magazine-cover" id="magazineCover">
+          <span>FASHION MYSTERY</span>
+          <strong id="coverTitle">Icono de Medianoche</strong>
+          <small id="coverSubtitle">Escape couture completado</small>
+        </div>
+        <div class="cover-controls">
+          <input id="coverTitleInput" type="text" value="Icono de Medianoche" aria-label="Titulo de portada">
+          <select id="coverTone" aria-label="Color de portada">
+            <option value="gold">Dorado</option>
+            <option value="noir">Noir</option>
+            <option value="rose">Rose</option>
+            <option value="cyber">Cyber</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
