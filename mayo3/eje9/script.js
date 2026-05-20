@@ -135,12 +135,18 @@ while (numero !== 0) {
     }
     //Ejercicio 14
     let numeroRandom = Math.floor(Math.random() * 10) + 1;
-    let intento = parseInt(prompt("Adivina el número entre 1 y 10:"));
-    if (intento === numeroRandom) {
-        alert("¡Felicidades! Has adivinado el número.");
-    } else {
-        alert("Lo siento, no adivinaste el número. El número era: " + numeroRandom);
+   
+    let intentos = 0;
+    while (intento !== numeroRandom) {
+        intentos++;
+        intento = parseInt(prompt("Adivina el número entre 1 y 10:"));
+        if (intento === numeroRandom) {
+            alert("¡Felicidades! Has adivinado el número en " + intentos + " intentos.");
+        } else  {
+            alert("Incorrecto. Intenta de nuevo.");
+        }
     }
+
     //Ejercicio 15
     let cantidad = 0;
     for (let i = 1; i <= cantidad; i++) {
