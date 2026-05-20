@@ -1,20 +1,21 @@
-
+//Ejercicio 1
 {
     alert("Hola Mundo!");
 
 }
-
+//Ejercicio 2
 {
     name = prompt("¿Cuál es tu nombre?");
 alert("Hola " + name );
 }
-
+//Ejercicio 3
 {
     let num1 = parseInt(prompt("Ingrese el primer número:"));
     let num2 = parseInt(prompt("Ingrese el segundo número:")); 
     let suma = num1 + num2;
     alert("La suma de " + num1 + " y " + num2 + " es: " + suma);
 }
+//Ejercicio 4
 var edad = parseInt(prompt("Ingrese su edad:"));
 
 if (edad >= 18) {
@@ -22,7 +23,7 @@ if (edad >= 18) {
 } else {
     alert("No eres mayor de edad.");
 }
-
+//Ejercicio 5
 {
     let numero = parseInt(prompt("Ingrese un número:"));
 
@@ -32,7 +33,7 @@ if (edad >= 18) {
         alert("El número " + numero + " es impar.");
     }
 }
-
+//Ejercicio 6
 {
     let num1 = parseInt(prompt("Ingrese el primer número:"));
     let num2 = parseInt(prompt("Ingrese el segundo número:"));
@@ -47,6 +48,7 @@ if (edad >= 18) {
     }
     alert("El número mayor es: " + mayor);
 }
+//Ejercicio 7
 var Nota = parseInt(prompt("Ingrese su nota:"));
 if (Nota < 5) {
     alert("Insuficiente");
@@ -59,22 +61,26 @@ if (Nota < 5) {
         }
     }
 }
+//Ejercicio 8
 alert("Contando del 1 al 10:");
 for (let i = 1; i <= 10; i++) {
     alert(i);
  }
+ //Ejercicio 9
  alert("Contando del 1 al 20, mostrando solo los números pares:");
  for (let i = 1; i <= 20; i++) {
     if (i % 2 === 0) {
       alert(i);
     }
     }
+    //Ejercicio 10
     let contraseña = prompt("Ingrese la contraseña:");
      if (contraseña === "1234") {
         alert("Contraseña correcta. Bienvenido.");
     } else {
         alert("Contraseña incorrecta. Acceso denegado.");
-    }   
+    }
+    //Ejercicio 11 
 let suma = 0;
 let numero = parseInt(prompt("Ingrese un número (0 para finalizar):"));
 while (numero !== 0) {
@@ -83,7 +89,7 @@ while (numero !== 0) {
    
 }
  alert("La suma de los números ingresados es: " + suma);
-
+ //Ejercicio 12
  let calculadora = prompt("Ingrese la operación que desea realizar (suma, resta, multiplicación, división):");
  let num1 = parseFloat(prompt("Ingrese el primer número:"));
  let num2 = parseFloat(prompt("Ingrese el segundo número:"));
@@ -112,6 +118,7 @@ while (numero !== 0) {
         default:
             alert("Operación no válida.");
     }   
+    //Ejercicio 13
     let opciones = prompt("Seleccione una opción: Saludar 1, Fecha 2, random 3");
     switch (opciones) {
         case "1":
@@ -126,7 +133,7 @@ while (numero !== 0) {
             alert("Número aleatorio generado: " + random);
             break;
     }
-    
+    //Ejercicio 14
     let numeroRandom = Math.floor(Math.random() * 10) + 1;
     let intento = parseInt(prompt("Adivina el número entre 1 y 10:"));
     if (intento === numeroRandom) {
@@ -134,6 +141,7 @@ while (numero !== 0) {
     } else {
         alert("Lo siento, no adivinaste el número. El número era: " + numeroRandom);
     }
+    //Ejercicio 15
     let cantidad = 0;
     for (let i = 1; i <= cantidad; i++) {
         let numeriP=arseInt(prompt("Ingrese un número:"));
@@ -141,15 +149,17 @@ while (numero !== 0) {
          cantidad++;
         } 
     }
+    // Ejercicio 16
     alert("La cantidad de números pares ingresados es: " + cantidad);
-
 let nombres = [ "Juan", "María", "Pedro", "Ana", "Luis"];
     console.log(nombres);
 
+    //Ejercicio 17
     let nombres1 = [ "Juan", "María", "Pedro", "Ana", "Luis"];
     for (let i = 0; i < nombres1.length; i++) {
         console.log(nombres1[i]);
     }
+    //Ejercicio 18
  let numerosMyM = [5, 10, 15, 20, 25];
    let mayor = numerosMyM[0];
     let menor = numerosMyM[0];
@@ -163,6 +173,8 @@ let nombres = [ "Juan", "María", "Pedro", "Ana", "Luis"];
     }
     console.log("El número mayor es: " + mayor);
     console.log("El número menor es: " + menor);
+
+    //Ejercicio 19
     let notasP = [7, 8, 9, 10];
     let promedio = 0;
     for (let i = 0; i < notasP.length; i++) {
@@ -170,7 +182,7 @@ let nombres = [ "Juan", "María", "Pedro", "Ana", "Luis"];
     }
     promedio /= notasP.length;
     console.log("El promedio de las notas es: " + promedio);
-    
+    //Ejercicio 20
 let nombresU = [];
 let nombreU;
 while (nombreU !== "salir") {
@@ -179,11 +191,13 @@ while (nombreU !== "salir") {
         nombresU.push(nombreU);
     }
 }
+//Ejercicio 21
 console.log("Los nombres ingresados son:");
 for (let i = 0; i < nombresU.length; i++) {
     console.log(nombresU[i]);
 }
 console.log("La cantidad de nombres ingresados es: " + nombresU.length);
+//Ejercicio 22
 let numerosPares = [];
 let numeroP;
 while (numeroP !== 0) {
@@ -197,11 +211,13 @@ for (let i = 0; i < numerosPares.length; i++) {
     console.log(numerosPares[i]);
 }
 console.log("La cantidad de números pares ingresados es: " + numerosPares.length);
-
+//Ejercicio 23
 let frutas = ["manzana", "banana", "naranja", "uva", "pera"];
 let frutaBuscada = prompt("Ingrese el nombre de la fruta que desea buscar:");
 console.log(frutas.includes(frutaBuscada));
+//Ejercicio 24
 frutas.pop(); 
 console.log(frutas);
+//Ejercicio 25
 frutas.push("sandía");
 console.log(frutas);
