@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Ejercicio 1 -->
+    <h1 id="title">Actividad</h1>
+    <button onclick="cambiarTexto()">Cambiar texto</button>
+
+    <!-- Ejercicio 2 -->
+    <p id="paragraph">Este es un párrafo.</p>
+    <button onclick="cambiarTextoElemento()">Cambiar texto</button>
+
+    <!-- Ejercicio 3 -->
+    <img id="image"
+    src="https://i.pinimg.com/1200x/29/75/c2/2975c2c0dd4cae4b63985fd5c60b6297.jpg"
+    width="200">
+
+    <button onclick="cambiarImagen()">Cambiar imagen</button>
+
+    <!-- Ejercicio 4 -->
+    <br><br>
+
+    <input type="text" id="mensaje1" placeholder="Escribe un mensaje...">
+
+    <button onclick="mostrarMensaje()">Mostrar</button>
+
+    <p id="resultado1"></p>
+
+    <!-- Ejercicio 5 -->
+    <p id="texto">Hola</p>
+
+    <!-- Ejercicio 6 -->
+    <p id="texto2" class="rojo">Hola</p>
+
+    <!-- Ejercicio 7 -->
+    <button class="btn">Cambiar modo</button>
+
+    <!-- Ejercicio 8 -->
+    <ul class="lista">
+        <li>Elemento 1</li>
+        <li>Elemento 2</li>
+    </ul>
+
+    <button onclick="agregarElemento()">Agregar elemento</button>
+
+    <!-- Ejercicio 9 -->
+    <h1 class="form-title">Formulario</h1>
+
+    <input type="text" id="nombre" placeholder="Nombre">
+
+    <input type="text" id="color" placeholder="Color favorito">
+
+    <input type="text" id="mensaje2" placeholder="Mensaje">
+
+    <button id="btnlast">Enviar</button>
+
+    <div>
+        <h3>Nombre: <span id="nombreResultado"></span></h3>
+        <h3>Color favorito: <span id="colorResultado"></span></h3>
+        <h3>Mensaje: <span id="mensajeResultado"></span></h3>
+    </div>
+    
+    <div class="error"></div>
+    <script src="script.js"></script>
+
+</body>
+</html>
