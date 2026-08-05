@@ -316,6 +316,21 @@ for ($i = 1; $i <= 50; $i++) {
     }
  }
 echo "Los números múltiplos de 3 del 1 al 100 son: " . $COntador . "\n";
+
+//ejercicio 33
+echo"\n";
+$ahorro = 0;
+$mes = 0;
+$meta = 5000;
+
+while ($ahorro < $meta) {
+    $mes++;
+    $ahorro += 500;
+    echo "Mes " . $mes . ": Ahorro = $" . $ahorro . "\n";
+}
+
+echo "Se alcanzó la meta en " . $mes . " meses.\n";
+
 ?>
 
 
