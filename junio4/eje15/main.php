@@ -425,3 +425,35 @@ function Aprobado($Promedio) {
         return false;
     }
 }
+
+//ejercicio 42
+echo"\n";
+$nombreS = ["Juan", "María", "Pedro", "Ana"];
+
+foreach($nombreS as $Nombre) {
+    echo $Nombre; 
+}
+
+
+//ejercicio 43 
+echo"\n";
+$NOmbres = ["Juan", "María", "Pedro", "Ana"];
+foreach($NOmbres as $nombre) {
+    echo $nombre . "\n";
+}
+
+  //ejercicio 44
+  echo"\n";
+  $PrEcios = [100, 200, 300, 400 , 500];
+  echo "Precios:" . implode(" $  ", $PrEcios) . "\n";
+  echo "Cantidad de precios: " . count($PrEcios) . "\n";
+
+  //ejercicio 45
+    echo"\n";
+    $NUMeros = [1, 2, 3, 4, 5];
+    foreach($NUMeros as $numero) {
+        echo $numero . "\n";
+    }
+    array_sum($NUMeros);
+    echo "La suma de los números es: " . array_sum($NUMeros) . "\n";
+
