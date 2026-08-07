@@ -331,6 +331,97 @@ while ($ahorro < $meta) {
 
 echo "Se alcanzó la meta en " . $mes . " meses.\n";
 
-?>
+//ejercicio 34
+echo"\n";
+$Saludar = 0;
+while ($Saludar < 2) {
+    $Saludar++;
+    echo "bienvenido al sistema\n";
+}
 
+//ejercicio 35
+echo"\n";
+$nombre = "Juan";
+function saludarUsuario($nombre) {
+    echo "Hola, " . $nombre . "!\n";
+}
+saludarUsuario($nombre);
 
+//ejercicio 36
+echo"\n";
+$Numero1 = 10;
+$Numero2 = 5;
+function sumar($Numero1, $Numero2) {
+    $Resultado = $Numero1 + $Numero2;
+    return $Resultado;
+}
+$Resultado = sumar($Numero1, $Numero2);
+echo "La suma es: " . $Resultado . "\n";
+
+//ejercicio 37
+echo"\n";
+$Compra = 0;
+$Precio = 100;
+$Cantidad = 5;
+function calcularTotal($Precio, $Cantidad) {
+    $Total = $Precio * $Cantidad;
+    return $Total;
+}
+$Compra = calcularTotal($Precio, $Cantidad);
+echo "El total de la compra es: $" . $Compra . "\n";
+
+//ejercicio 38
+echo"\n";
+$EDad = 20;
+function esMayorDeEdad($EDad) {
+    if ($EDad >= 18) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+//ejercicio 39
+echo"\n";
+$Numero = 7;
+function esPar($Numero) {
+    if ($Numero % 2 == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+//ejercicio 40
+echo"\n";
+$PRecio = 100;
+$DEScuento = 0.2;
+function aplicarDescuento($PRecio, $DEScuento) {
+    $PrecioFinal = $PRecio * (1 - $DEScuento);
+    return $PrecioFinal;
+}
+$PrecioFinal = aplicarDescuento($PRecio, $DEScuento);
+echo "El precio final con descuento es: $" . $PrecioFinal . "\n";
+
+//ejercicio 41
+echo"\n";
+$NOTA1 = 8;
+$NOTA2 = 7;
+$NOTA3 = 9;
+function calcularPromedio($NOTA1, $NOTA2, $NOTA3) {
+    $Promedio = ($NOTA1 + $NOTA2 + $NOTA3) / 3;
+    return $Promedio;
+}
+$Promedio = calcularPromedio($NOTA1, $NOTA2, $NOTA3);
+echo "El promedio de las notas es: " . $Promedio . "\n";
+
+$Aprobado = Aprobado($Promedio);
+function Aprobado($Promedio) {
+    if ($Promedio >= 6) {
+        return true;
+        echo "Aprobado\n";
+    } else {
+        echo "Reprobado\n";
+        return false;
+    }
+}
